@@ -7,11 +7,11 @@ export default function Principal({ navigation }) {
     const [nomeUsuario, setNomeUsuario] = useState('');
     const [usuario, setUsuario] = useState({});
 
-    async function busca(){
+    async function busca() {
         const resultado = await buscaUsuario(nomeUsuario)
 
         setNomeUsuario('')
-        if (resultado ) {
+        if (resultado) {
             setUsuario(resultado)
         }
         else {
@@ -25,29 +25,29 @@ export default function Principal({ navigation }) {
             <View style={estilos.container}>
                 {
                     usuario?.login &&
-                <>
-                    <View style={estilos.fundo} />
-                    <View style={estilos.imagemArea}>
-                        <Image source={{ uri: usuario.avatar_url }} style={estilos.imagem} />
-                    </View>
-                    <Text style={estilos.textoNome}>{usuario.name}</Text>
-                    <Text style={estilos.textoEmail}>{usuario.email}</Text>
-                    <View style={estilos.seguidoresArea}>
-                        <View style={estilos.seguidores}>
-                            <Text style={estilos.seguidoresNumero}>{usuario.followers}</Text>
-                            <Text style={estilos.seguidoresTexto}>Seguidores</Text>
+                    <>
+                        <View style={estilos.fundo} />
+                        <View style={estilos.imagemArea}>
+                            <Image source={{ uri: usuario.avatar_url }} style={estilos.imagem} />
                         </View>
-                        <View style={estilos.seguidores}>
-                            <Text style={estilos.seguidoresNumero}>{usuario.following}</Text>
-                            <Text style={estilos.seguidoresTexto}>Seguindo</Text>
+                        <Text style={estilos.textoNome}>{usuario.name}</Text>
+                        <Text style={estilos.textoEmail}>{usuario.email}</Text>
+                        <View style={estilos.seguidoresArea}>
+                            <View style={estilos.seguidores}>
+                                <Text style={estilos.seguidoresNumero}>{usuario.followers}</Text>
+                                <Text style={estilos.seguidoresTexto}>Seguidores</Text>
+                            </View>
+                            <View style={estilos.seguidores}>
+                                <Text style={estilos.seguidoresNumero}>{usuario.following}</Text>
+                                <Text style={estilos.seguidoresTexto}>Seguindo</Text>
+                            </View>
                         </View>
-                    </View>
-                    <TouchableOpacity onPress={() => navigation.navigate('Repositorios', {id: usuario.id})}>
-                        <Text style={estilos.repositorios}>
-                            Ver os repositórios
-                        </Text>
-                    </TouchableOpacity>
-                </>
+                        <TouchableOpacity onPress={() => navigation.navigate('Repositorios', { login: usuario.login })}>
+                            <Text style={estilos.repositorios}>
+                                Ver os repositórios
+                            </Text>
+                        </TouchableOpacity>
+                    </>
                 }
 
                 <TextInput

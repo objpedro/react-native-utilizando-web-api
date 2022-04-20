@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, TextInput, Alert } from 'react-native';
 import estilos from './estilos';
-import { salvarRepositoriosDoUsuario, deletarRepositoriosDoUsuario } from '../../servicos/requisicoes/repositorios';
+import { salvarRepositoriosDoUsuario, deletarRepositorioDoUsuario } from '../../servicos/requisicoes/repositorios';
 
 export default function InfoRepositorio({ route, navigation }) {
     const [nome, setNome] = useState(route.params.item.name);
@@ -25,14 +25,14 @@ export default function InfoRepositorio({ route, navigation }) {
     }
 
     async function deletar() {
-        const resultado = await deletarRepositoriosDoUsuario(route.params.item.id)
+        const resultado = await deletarRepositorioDoUsuario(route.params.item.id)
 
         if (resultado === 'sucesso') {
             Alert.alert('Repositorio deletado!')
             navigation.goBack();
         }
         else {
-            Alert.alert('Erro ao deletar')
+            Alert.alert('Erro ao deletar o repositorio')
         }
     }
 
